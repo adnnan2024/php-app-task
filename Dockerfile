@@ -1,5 +1,6 @@
 # Use the official PHP image as a base
 FROM php:8.1-apache
+LABEL name="php-my_app"
 
 # Install mysqli extension
 RUN docker-php-ext-install mysqli
