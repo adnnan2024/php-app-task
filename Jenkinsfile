@@ -58,7 +58,7 @@ pipeline {
                     sh "docker stop ${CONTAINER_NAME} || true"
 
                     // Run the new container
-                    sh "docker run --rm --netwotk php-app_app-network -d --name ${CONTAINER_NAME} -p 8082:80 ${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
+                    sh "docker run --rm --network php-app_app-network -d --name ${CONTAINER_NAME} -p 8082:80 ${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
                 }
             }
         }
