@@ -5,7 +5,7 @@ pipeline {
         DOCKER_IMAGE = "php-app"
         DOCKER_REGISTRY = "madnan1216/php-app-image"
         GIT_CREDENTIALS_ID = "githubcreds"
-        GIT_BRANCH = "master"
+        GIT_BRANCH = "main"
         DOCKER_CREDENTIALS_ID = "dockercreds" // Add Docker credentials ID if needed
         CONTAINER_NAME = "my_app"
     }
@@ -16,7 +16,7 @@ pipeline {
                 script {
                     checkout([$class: 'GitSCM',
                         branches: [[name: "${GIT_BRANCH}"]],
-                        userRemoteConfigs: [[url: 'https://github.com/adnnan2024/sample-php-app.git', credentialsId: "${GIT_CREDENTIALS_ID}"]]
+                        userRemoteConfigs: [[url: 'https://github.com/adnnan2024/php-app-task.git', credentialsId: "${GIT_CREDENTIALS_ID}"]]
                     ])
                 }
             }
