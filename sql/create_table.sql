@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS testdb;
+USE testdb;
+
+CREATE TABLE IF NOT EXISTS messages (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    message VARCHAR(255) NOT NULL
+);
+
+INSERT INTO messages (message) VALUES ('Hello, DevOps World');
