@@ -54,11 +54,11 @@ pipeline {
             }
         }
 
-        stage('Clean Old') {
-          steps {
-        sh 'docker image rm $(docker images --filter="label=name=php-my_app" --filter "before=${DOCKER_REGISTRY}:${env.BUILD_NUMBER}" --quiet) -f'
-    }
-    }
+        stage('Delete Old Images with Filter'){
+      steps {
+        sh 'docker image rm $(docker images --filter="label=name=php-my_app" --filter "before=${DOCKER_REGISTRY}:"$BUILD_NUMBER"" --quiet) -f'
+      }
+        }
     }
 
     post {
