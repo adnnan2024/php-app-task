@@ -25,16 +25,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.build(DOCKER_IMAGE)
-                }
-            }
-        }
-
-        stage('Tag') {
-            steps {
-                script {
-                    def tag = "${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
-                    sh "docker tag ${DOCKER_IMAGE} ${tag}"
+                    docker.build("${DOCKER_REGISTRY}:${env.BUILD_NUMBER}")
                 }
             }
         }
@@ -45,7 +36,7 @@ pipeline {
                     def tag = "${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
                     withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
-                        sh "docker push ${tag}"
+                        sh "docker push ${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
                     }
                 }
             }
