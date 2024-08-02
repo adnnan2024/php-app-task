@@ -65,10 +65,7 @@ pipeline {
 
         stage('Clean Old') {
             steps {
-                script {
-                    // Remove old images to free up space
-                    sudo docker image rm \$(sudo docker images --filter='label=name=php-my_app' --filter='before=${DOCKER_REGISTRY}:${env.BUILD_NUMBER}' --quiet) -f "
-                }
+                sh 'docker image rm $(docker images --filter='label=name=php-my_app' --filter="before=${DOCKER_REGISTRY}:${BUILD_NUMBER}" --quiet) -f'
             }
         }
     }
