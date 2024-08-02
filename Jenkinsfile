@@ -57,7 +57,7 @@ pipeline {
         stage('Clean Old') {
     steps {
         sh '''
-            sudo docker image rm $(docker images --filter='label=name=php-my_app' --filter='before=${DOCKER_REGISTRY}:${env.BUILD_NUMBER}' --quiet) -f
+            docker image rm $(docker images --filter='label=name=php-my_app' --filter='before=${DOCKER_REGISTRY}:${env.BUILD_NUMBER}' --quiet) -f
         '''
     }
     }
