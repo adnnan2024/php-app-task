@@ -56,15 +56,11 @@ pipeline {
 
         stage('Clean Old') {
     steps {
-        script {
-            // Remove old images to free up space
             sh '''
-                # Remove images with the label "name=php-my_app" that are older than the current build number
-                docker image rm $(docker images --filter='label=name=php-my_app' --filter="before=${DOCKER_REGISTRY}:${env.BUILD_NUMBER}" --quiet) -f
+                docker image rm $(docker images --filter='label=name=php-my_app' --filter="before=${DOCKER_REGISTRY}:${env.BUILD_NUMBER}" --quiet) || true
             '''
         }
     }
-}
     }
 
     post {
