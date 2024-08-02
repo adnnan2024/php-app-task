@@ -56,10 +56,9 @@ pipeline {
                 script {
                     // Stop and remove any existing container
                     sh "docker stop ${CONTAINER_NAME} || true"
-                    sh "docker rm ${CONTAINER_NAME} || true"
 
                     // Run the new container
-                    sh "docker run -d --name ${CONTAINER_NAME} -p 8082:80 ${DOCKER_IMAGE}"
+                    sh "docker run --rm --netwotk php-app_app-network -d --name ${CONTAINER_NAME} -p 8082:80 ${DOCKER_REGISTRY}:${env.BUILD_NUMBER}"
                 }
             }
         }
